@@ -3,9 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cirpt"]
 size = Vector2(40, 51)
 
-[node name="Node2D" type="Node2D"]
+[node name="Playercharacter" type="CharacterBody2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cirpt")
