@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://byrft6nganm1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cirpt"]
-size = Vector2(40, 51)
+size = Vector2(102, 102.5)
 
 [node name="Playercharacter" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, 25.75)
 shape = SubResource("RectangleShape2D_cirpt")
