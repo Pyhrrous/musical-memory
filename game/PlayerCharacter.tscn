@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2gxkn6si0n0s"]
+[gd_scene load_steps=10 format=3 uid="uid://byrft6nganm1k"]
 
 [ext_resource type="Texture2D" uid="uid://ckrtd3w2ocshu" path="res://assets/spr_mainchara01.png" id="1_ly1ls"]
 
@@ -109,5 +109,7 @@ shape = SubResource("RectangleShape2D_cirpt")
 scale = Vector2(0.25, 0.25)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(4.52995e-06, -16)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pj3xh")
 animation = &"idle"
