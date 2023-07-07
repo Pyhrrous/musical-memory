@@ -1,15 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4hvqwuin6g8l"]
+[gd_scene load_steps=2 format=3 uid="uid://c2ckwlukxwatr"]
 
-[ext_resource type="Texture2D" uid="uid://dsl07iv4glh3c" path="res://WallSet.png" id="2_aj3qm"]
+[ext_resource type="Texture2D" uid="uid://dsl07iv4glh3c" path="res://assets/WallSet.png" id="1_u0s2e"]
 
 [node name="Gamespace" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
 position = Vector2(300, 150)
-texture = ExtResource("2_aj3qm")
+texture = ExtResource("1_u0s2e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(32, 32, 256, 32, 256, 0, 0, 0, 0, 128, 32, 128, 32, 32)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-7.62939e-06, 163.212)
+scale = Vector2(1, -0.00488281)
+polygon = PackedVector2Array(32, -19822.1, 256, -26375.7, 256, -21460.5, 0, 0, 0, 128, 7.6294e-06, -28014.1, 32, -27194.9)

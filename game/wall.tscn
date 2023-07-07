@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdnh4ob214gn0"]
 
-[ext_resource type="Texture2D" uid="uid://c18o012ksksax" path="res://town_tiles.png" id="1_xpem5"]
+[ext_resource type="Texture2D" uid="uid://c18o012ksksax" path="res://assets/town_tiles.png" id="1_61msj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgibw"]
 size = Vector2(16, 16)
@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
 position = Vector2(8, 8)
-texture = ExtResource("1_xpem5")
+texture = ExtResource("1_61msj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
