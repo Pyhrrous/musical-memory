@@ -5,11 +5,20 @@
 [sub_resource type="GDScript" id="GDScript_mj5qw"]
 script/source = "extends Node2D
 
+var wall = preload(\"res://wall.tscn\")
+var objectarray = []
+
+func _physics_process(delta):
+	pass
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print(\"Mouse Click at: \", event.position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
