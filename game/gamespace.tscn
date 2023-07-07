@@ -6,7 +6,7 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(300, 150)
+position = Vector2(320, 160)
 texture = ExtResource("1_u0s2e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -17,4 +17,10 @@ polygon = PackedVector2Array(32, 32, 256, 32, 256, 0, 0, 0, 0, 128, 32, 128, 32,
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-7.62939e-06, 163.212)
 scale = Vector2(1, -0.00488281)
-polygon = PackedVector2Array(32, -19822.1, 256, -26375.7, 256, -21460.5, 0, 0, 0, 128, 7.6294e-06, -28014.1, 32, -27194.9)
+polygon = PackedVector2Array(256, -25556.6, 32, -25556.6, 32, -5895.78, 7.62939e-06, -5895.78, 7.62939e-06, -32110.2, 256, -32110.2)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(384, 288, 608, 288, 608, 192, 640, 192, 640, 320, 384, 320)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(608, 32, 608, 128, 640, 128, 640, 0, 384, 0, 384, 32)
