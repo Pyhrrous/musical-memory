@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2ckwlukxwatr"]
+[gd_scene load_steps=3 format=3 uid="uid://c2ckwlukxwatr"]
 
 [ext_resource type="Texture2D" uid="uid://dsl07iv4glh3c" path="res://assets/WallSet.png" id="1_u0s2e"]
 
+[sub_resource type="GDScript" id="GDScript_mj5qw"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="Gamespace" type="Node2D"]
+script = SubResource("GDScript_mj5qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
