@@ -1,0 +1,9 @@
+	
+programming:
+	pyhrrous
+art:
+	craeons
+	
+terrain textures:
+	https://opengameart.org/content/16x16-wall-set
+	https://opengameart.org/content/town-tiles

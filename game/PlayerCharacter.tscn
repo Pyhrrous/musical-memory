@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://byrft6nganm1k"]
+
+[sub_resource type="GDScript" id="GDScript_obd0l"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+#stress is caused by combat, dodging near attacks, and taking damage
+var stress = 0
+#boredom is caused by repeated similar combat encounters, lack of rewards, and easy combat encounters
+var boredom = 0
+#enjoyment is a 'score\" variable; measured by beating challenging combat encounters, pacing out
+#  periods of high stress vs periods of low stress, and minimizing boredom
+var enjoyment = 0
+
+var attack = 10
+var defense = 10
+var health = 10
+
+
+func _physics_process(delta):
+	# priorities list; if multiple of these behaviors are true, then pick the highest-up one
+	if (_danger_is_near()):
+		pass
+	elif (_target_exists()):
+		pass
+	elif (_move_to_next_room()):
+		pass
+	else:
+		pass
+	
+	move_and_slide()
+
+func _danger_is_near():
+	pass
+
+func _target_exists():
+	pass
+
+func _move_to_next_room():
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cirpt"]
+size = Vector2(40, 51)
+
+[node name="Playercharacter" type="CharacterBody2D"]
+script = SubResource("GDScript_obd0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cirpt")
