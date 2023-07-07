@@ -13,15 +13,13 @@ var objectarray = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	#this creates a 2d array for objects
 	for x in grid_size_x:
 		objectarray.append([])
 		for y in grid_size_y:
 			objectarray[x].append(null)
 	
-	for x in grid_size_x:
-		print(objectarray[x])
-		#for y in grid_size_y:
-		
 
 func _physics_process(delta):
 	pass
