@@ -159,6 +159,6 @@ shape = SubResource("RectangleShape2D_cirpt")
 scale = Vector2(0.25, 0.25)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_pj3xh")
-animation = &"walk"
-frame_progress = 0.543785
+animation = &"attack"

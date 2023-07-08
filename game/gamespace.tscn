@@ -84,9 +84,12 @@ func _create_at(a, b):
 	add_child(newwall)
 	newwall.position.x = (newX+2) * 16
 	newwall.position.y = (newY+2) * 16
+	
+	# give centering offset to objects unless they're walls (slot 0)
 	if (selectedobject != 0):
 		newwall.position.x += 8;
 		newwall.position.y += 8;
+	
 	if (objectarray[newX][newY] != null):
 		objectarray[newX][newY].queue_free()
 	objectarray[newX][newY] = newwall
