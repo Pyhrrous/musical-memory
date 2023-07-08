@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://7v7i8opxbp86"]
+
+[ext_resource type="Texture2D" uid="uid://38n12clm8l5x" path="res://assets/spr_mob01.png" id="1_74yj3"]
+[ext_resource type="Script" path="res://objects/EnemyHopperBullet.gd" id="1_t6wre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kucoh"]
+radius = 4.24264
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1np7"]
+atlas = ExtResource("1_74yj3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1e8i"]
+atlas = ExtResource("1_74yj3")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1bxw"]
+atlas = ExtResource("1_74yj3")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ipryh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1np7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1e8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1bxw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyHopperBullet" type="CharacterBody2D"]
+script = ExtResource("1_t6wre")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kucoh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 0)
+scale = Vector2(0.1875, 0.1875)
+sprite_frames = SubResource("SpriteFrames_ipryh")

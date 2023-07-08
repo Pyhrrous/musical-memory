@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2ckwlukxwatr"]
+[gd_scene load_steps=4 format=3 uid="uid://c2ckwlukxwatr"]
 
 [ext_resource type="Texture2D" uid="uid://dsl07iv4glh3c" path="res://assets/WallSet.png" id="1_u0s2e"]
+[ext_resource type="PackedScene" uid="uid://d2gxkn6si0n0s" path="res://PlayerCharacter.tscn" id="2_k23ui"]
 
 [sub_resource type="GDScript" id="GDScript_mj5qw"]
 script/source = "extends Node2D
@@ -28,7 +29,7 @@ func _ready():
 		for y in grid_size_y:
 			objectarray[x].append(null)
 	#pause the tree (this starts build mode)
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 
 func _physics_process(delta):
@@ -46,7 +47,7 @@ func _input(event):
 			selectedobject = get_selection_index(selectedobject - 1)
 	
 	if event is InputEventKey:
-		if (event.button_index == KEY_ENTER):
+		if (event.keycode == KEY_ENTER):
 			if (current_state == statelist.build):
 				#unpause the game and start play mode
 				current_state = statelist.play
@@ -137,3 +138,6 @@ polygon = PackedVector2Array(384, 288, 608, 288, 608, 192, 640, 192, 640, 320, 3
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(608, 32, 608, 128, 640, 128, 640, 0, 384, 0, 384, 32)
+
+[node name="Playercharacter" parent="." instance=ExtResource("2_k23ui")]
+position = Vector2(72, 152)
