@@ -48,6 +48,7 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.125, 0.125)
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_qibfu")
 animation = &"idle"
