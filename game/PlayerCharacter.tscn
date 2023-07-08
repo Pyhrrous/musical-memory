@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2gxkn6si0n0s"]
+[gd_scene load_steps=15 format=3 uid="uid://d2gxkn6si0n0s"]
 
 [ext_resource type="Texture2D" uid="uid://ckrtd3w2ocshu" path="res://assets/spr_mainchara01.png" id="1_ly1ls"]
 
@@ -63,9 +63,17 @@ region = Rect2(256, 256, 256, 128)
 atlas = ExtResource("1_ly1ls")
 region = Rect2(512, 256, 256, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4snl"]
+atlas = ExtResource("1_ly1ls")
+region = Rect2(0, 384, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtpo2"]
 atlas = ExtResource("1_ly1ls")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q37bs"]
+atlas = ExtResource("1_ly1ls")
+region = Rect2(0, 512, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1snhj"]
 atlas = ExtResource("1_ly1ls")
@@ -101,10 +109,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_c4snl")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rtpo2")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q37bs")
+}],
+"loop": true,
+"name": &"defeat",
 "speed": 5.0
 }, {
 "frames": [{
@@ -135,8 +159,6 @@ shape = SubResource("RectangleShape2D_cirpt")
 scale = Vector2(0.25, 0.25)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(64, 0)
 sprite_frames = SubResource("SpriteFrames_pj3xh")
-animation = &"attack"
-frame = 2
-frame_progress = 1.0
+animation = &"walk"
+frame_progress = 0.543785
