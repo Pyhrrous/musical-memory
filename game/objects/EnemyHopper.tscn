@@ -1,6 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://fohqm3lidej8"]
+[gd_scene load_steps=10 format=3 uid="uid://fohqm3lidej8"]
 
 [ext_resource type="Texture2D" uid="uid://38n12clm8l5x" path="res://assets/spr_mob01.png" id="1_b5jcw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja38v"]
+atlas = ExtResource("1_b5jcw")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2r4m"]
+atlas = ExtResource("1_b5jcw")
+region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4qtc"]
 atlas = ExtResource("1_b5jcw")
@@ -18,14 +26,32 @@ region = Rect2(128, 128, 128, 128)
 atlas = ExtResource("1_b5jcw")
 region = Rect2(256, 128, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_08nm0"]
+atlas = ExtResource("1_b5jcw")
+region = Rect2(384, 128, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qibfu"]
 animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_ja38v")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_m2r4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja38v")
+}],
+"loop": false,
+"name": &"atttack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d4qtc")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 5.0
 }, {
 "frames": [{
@@ -37,6 +63,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tfg81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08nm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfg81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58xe0")
 }],
 "loop": true,
 "name": &"walk",
@@ -51,4 +86,4 @@ animations = [{
 position = Vector2(-4.76837e-07, -4.76837e-07)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_qibfu")
-animation = &"idle"
+animation = &"walk"
