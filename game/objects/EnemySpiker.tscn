@@ -1,19 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw2nytwwplm5s"]
+[gd_scene load_steps=11 format=3 uid="uid://bw2nytwwplm5s"]
 
 [ext_resource type="Texture2D" uid="uid://jk1kyrasq4l5" path="res://assets/spr_mob02.png" id="1_dgrq1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfkfk"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bghu4"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gowrp"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(0, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mku3d"]
 atlas = ExtResource("1_dgrq1")
 region = Rect2(0, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uaxq"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwtvy"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ri3j"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on0ok"]
+atlas = ExtResource("1_dgrq1")
+region = Rect2(128, 128, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bhf8o"]
 animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_bfkfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bghu4")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gowrp")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mku3d")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uaxq")
+}],
+"loop": true,
+"name": &"defeated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwtvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ri3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on0ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ri3j")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -23,4 +95,4 @@ animations = [{
 position = Vector2(0, -8)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_bhf8o")
-animation = &"idle"
+animation = &"defeated"
