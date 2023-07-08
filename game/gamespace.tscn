@@ -11,6 +11,10 @@ const grid_size_y = 16
 var wall = preload(\"res://wall.tscn\")
 var objectarray = []
 
+enum statelist {build, play, transition, dialogue, enter}
+var current_state = statelist.build
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -26,31 +30,59 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT) and event.pressed:
-			var newX = floor(event.position.x/16)
-			var newY = floor(event.position.y/16)
+		if (event.button_index == MOUSE_BUTTON_LEFT):
+			if (event.pressed):
+				_create_at(event.position.x, event.position.y)
+				lmb_is_held = true;
+				rmb_is_held = false;
+		elif (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
+			_destroy_at(event.position.x, event.position.y)
+			lmb_is_held = false;
+			rmb_is_held = true;
 			
-			#take the grid pos of new coords and subtract 2 because of borders
-			newX -= 2
-			newY -= 2
 			
-			#if newX or newY < 0 or > grid size vars then it's too small/big
-			# throw out
-			if (newX < 0 or newX > grid_size_x):
-				return
-			if (newY < 0 or newY > grid_size_y):
-				return
-			
-			#if we get to this point, mouse pos will create a wall in a valid spot
-			var newwall = wall.instantiate()
-			add_child(newwall)
-			newwall.position.x = (newX+2) * 16
-			newwall.position.y = (newY+2) * 16
-			if (objectarray[newX][newY] != null):
-				objectarray[newX][newY].queue_free()
-			objectarray[newX][newY] = newwall
 			
 
+# attempts to create objects etc. at specificed x/y coordinates
+func _create_at(a, b):
+	if (current_state != statelist.build): return
+	
+	var newX = floor(a/16)
+	var newY = floor(b/16)
+	
+	#take the grid pos of new coords and subtract 2 because of borders
+	newX -= 2
+	newY -= 2
+	
+	#if newX or newY < 0 or > grid size vars then it's too small/big
+	# throw out
+	if (newX < 0 or newX > grid_size_x):
+		return
+	if (newY < 0 or newY > grid_size_y):
+		return
+	
+	#if we get to this point, mouse pos will create a wall in a valid spot
+	var newwall = wall.instantiate()
+	add_child(newwall)
+	newwall.position.x = (newX+2) * 16
+	newwall.position.y = (newY+2) * 16
+	if (objectarray[newX][newY] != null):
+		objectarray[newX][newY].queue_free()
+	objectarray[newX][newY] = newwall
+
+# similar code to above, but destroys
+func _destroy_at(a, b):
+	if (current_state != statelist.build): return
+	var newX = floor(a/16)
+	var newY = floor(b/16)
+	newX -= 2
+	newY -= 2
+	if (newX < 0 or newX > grid_size_x):
+		return
+	if (newY < 0 or newY > grid_size_y):
+		return
+	if (objectarray[newX][newY] != null):
+		objectarray[newX][newY].queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
