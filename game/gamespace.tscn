@@ -27,6 +27,8 @@ func _ready():
 		objectarray.append([])
 		for y in grid_size_y:
 			objectarray[x].append(null)
+	#pause the tree (this starts build mode)
+	get_tree().paused = true
 	
 
 func _physics_process(delta):
@@ -35,13 +37,20 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-				_create_at(event.position.x, event.position.y)
+			_create_at(event.position.x, event.position.y)
 		elif (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
 			_destroy_at(event.position.x, event.position.y)
 		elif (event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
 			selectedobject = get_selection_index(selectedobject + 1)
 		elif (event.button_index == MOUSE_BUTTON_WHEEL_UP):
 			selectedobject = get_selection_index(selectedobject - 1)
+	
+	if event is InputEventKey:
+		if (event.button_index == KEY_ENTER):
+			if (current_state == statelist.build):
+				#unpause the game and start play mode
+				current_state = statelist.play
+				get_tree().paused = false
 
 #modulos the input via the array of buildables
 func get_selection_index(i):
@@ -102,6 +111,7 @@ func _process(delta):
 "
 
 [node name="Gamespace" type="Node2D"]
+process_mode = 3
 script = SubResource("GDScript_mj5qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
