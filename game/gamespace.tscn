@@ -8,8 +8,12 @@ script/source = "extends Node2D
 const grid_size_x = 36
 const grid_size_y = 16
 
-var wall = preload(\"res://wall.tscn\")
+#stores all the current objects
 var objectarray = []
+#stores the list of buildable objects
+var creatablesarray = [preload(\"res://wall.tscn\"), preload(\"res://objects/EnemyHopper.tscn\"), preload(\"res://objects/EnemySpiker.tscn\")]
+#pointer for which part of the array to place
+var selectedobject = 0
 
 enum statelist {build, play, transition, dialogue, enter}
 var current_state = statelist.build
@@ -30,18 +34,23 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_LEFT):
-			if (event.pressed):
+		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 				_create_at(event.position.x, event.position.y)
-				lmb_is_held = true;
-				rmb_is_held = false;
 		elif (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
 			_destroy_at(event.position.x, event.position.y)
-			lmb_is_held = false;
-			rmb_is_held = true;
-			
-			
-			
+		elif (event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
+			selectedobject = get_selection_index(selectedobject + 1)
+		elif (event.button_index == MOUSE_BUTTON_WHEEL_UP):
+			selectedobject = get_selection_index(selectedobject - 1)
+
+#modulos the input via the array of buildables
+func get_selection_index(i):
+	if (i >= creatablesarray.size()):
+		return (i % creatablesarray.size())
+	elif (i < 0):
+		return (get_selection_index(i + creatablesarray.size()))
+	else:
+		return i
 
 # attempts to create objects etc. at specificed x/y coordinates
 func _create_at(a, b):
@@ -62,10 +71,13 @@ func _create_at(a, b):
 		return
 	
 	#if we get to this point, mouse pos will create a wall in a valid spot
-	var newwall = wall.instantiate()
+	var newwall = creatablesarray[selectedobject].instantiate()
 	add_child(newwall)
 	newwall.position.x = (newX+2) * 16
 	newwall.position.y = (newY+2) * 16
+	if (selectedobject != 0):
+		newwall.position.x += 8;
+		newwall.position.y += 8;
 	if (objectarray[newX][newY] != null):
 		objectarray[newX][newY].queue_free()
 	objectarray[newX][newY] = newwall
@@ -83,7 +95,7 @@ func _destroy_at(a, b):
 		return
 	if (objectarray[newX][newY] != null):
 		objectarray[newX][newY].queue_free()
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
