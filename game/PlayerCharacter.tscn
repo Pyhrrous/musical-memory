@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2gxkn6si0n0s"]
+[gd_scene load_steps=13 format=3 uid="uid://d2gxkn6si0n0s"]
 
 [ext_resource type="Texture2D" uid="uid://ckrtd3w2ocshu" path="res://assets/spr_mainchara01.png" id="1_ly1ls"]
 
@@ -51,6 +51,18 @@ func _move_to_next_room():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cirpt"]
 size = Vector2(8.03125, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e31xn"]
+atlas = ExtResource("1_ly1ls")
+region = Rect2(0, 256, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3q16"]
+atlas = ExtResource("1_ly1ls")
+region = Rect2(256, 256, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aq8a"]
+atlas = ExtResource("1_ly1ls")
+region = Rect2(512, 256, 256, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtpo2"]
 atlas = ExtResource("1_ly1ls")
 region = Rect2(0, 0, 128, 128)
@@ -73,6 +85,20 @@ region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pj3xh"]
 animations = [{
+"frames": [{
+"duration": 2.4,
+"texture": SubResource("AtlasTexture_e31xn")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_m3q16")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4aq8a")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rtpo2")
@@ -109,8 +135,8 @@ shape = SubResource("RectangleShape2D_cirpt")
 scale = Vector2(0.25, 0.25)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(4.52995e-06, -16)
-scale = Vector2(0.5, 0.5)
+position = Vector2(64, 0)
 sprite_frames = SubResource("SpriteFrames_pj3xh")
-animation = &"walk"
-frame_progress = 0.736888
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
