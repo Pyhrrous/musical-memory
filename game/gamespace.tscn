@@ -75,6 +75,9 @@ func _create_at(a, b):
 	add_child(newwall)
 	newwall.position.x = (newX+2) * 16
 	newwall.position.y = (newY+2) * 16
+	if (selectedobject != 0):
+		newwall.position.x += 8;
+		newwall.position.y += 8;
 	if (objectarray[newX][newY] != null):
 		objectarray[newX][newY].queue_free()
 	objectarray[newX][newY] = newwall
@@ -92,7 +95,7 @@ func _destroy_at(a, b):
 		return
 	if (objectarray[newX][newY] != null):
 		objectarray[newX][newY].queue_free()
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
