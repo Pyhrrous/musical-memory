@@ -33,7 +33,10 @@ func _ready():
 	
 
 func _physics_process(delta):
-	pass
+	if current_state == statelist.play:
+		if enemies_still_active():
+			current_state = statelist.build
+			get_tree().paused = true
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -62,6 +65,14 @@ func get_selection_index(i):
 	else:
 		return i
 
+#returns true if enemies are still active
+func enemies_still_active():
+	for r in grid_size_x:
+		for c in grid_size_y:
+			if (objectarray[r][c] != null and !(objectarray[r][c] is StaticBody2D)):
+				return false
+	return true
+
 # attempts to create objects etc. at specificed x/y coordinates
 func _create_at(a, b):
 	if (current_state != statelist.build): return
@@ -83,6 +94,7 @@ func _create_at(a, b):
 	#if we get to this point, mouse pos will create a wall in a valid spot
 	var newwall = creatablesarray[selectedobject].instantiate()
 	add_child(newwall)
+	print(find_child(\"EnemyHopper\") == null)
 	newwall.position.x = (newX+2) * 16
 	newwall.position.y = (newY+2) * 16
 	
