@@ -73,6 +73,15 @@ func enemies_still_active():
 				return false
 	return true
 
+func list_enemies():
+	var returner = []
+	for r in grid_size_x:
+		for c in grid_size_y:
+			if (objectarray[r][c] != null and !(objectarray[r][c] is StaticBody2D)):
+				returner.append(objectarray[r][c])
+	return returner
+	
+
 # attempts to create objects etc. at specificed x/y coordinates
 func _create_at(a, b):
 	if (current_state != statelist.build): return
@@ -124,6 +133,13 @@ func _destroy_at(a, b):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func delete_enemy(target):
+	for r in grid_size_x:
+		for c in grid_size_y:
+			print(r,\" \",c)
+			if objectarray[r][c] == target:
+				target.queue_free()
 "
 
 [node name="Gamespace" type="Node2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2gxkn6si0n0s"]
+[gd_scene load_steps=14 format=3 uid="uid://d2gxkn6si0n0s"]
 
 [ext_resource type="Texture2D" uid="uid://ckrtd3w2ocshu" path="res://assets/spr_mainchara01.png" id="1_ly1ls"]
 
@@ -24,13 +24,18 @@ var attack = 10
 var defense = 10
 var health = 10
 
+var target
 
 func _physics_process(delta):
 	# priorities list; if multiple of these behaviors are true, then pick the highest-up one
-	if (_danger_is_near()):
-		pass
+	if (_target_is_near()):
+		velocity = Vector2.ZERO
+		_set_animation(\"attack\")
+		if (get_child(0).get_frame() == 3):
+			get_parent().delete_enemy(target)
+			_set_animation(\"default\")
 	elif (_target_exists()):
-		pass
+		_move_toward_target(delta)
 	elif (_move_to_next_room()):
 		pass
 	else:
@@ -42,14 +47,41 @@ func _danger_is_near():
 	pass
 
 func _target_exists():
-	pass
+	var closest = null
+	var closest_distance = 9999999
+	var enemy_list = get_parent().list_enemies()
+	
+	if enemy_list.size() == 0: return false
+	#iterate through list and get closest enemy
+	for e in enemy_list:
+		if ( (position - e.position).length() < closest_distance):
+			closest = e
+			closest_distance = (position - e.position).length()
+	target = closest
+	return true;
 
 func _move_to_next_room():
 	pass
-"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cirpt"]
-size = Vector2(8.03125, 8)
+func _target_is_near():
+	if (target == null): return false
+	
+	if (target.position - position).length() > 48: return false
+	
+	return true
+
+func _move_toward_target(delta):
+	var direction =  (target.position - position).normalized()
+	
+	velocity = direction * SPEED * delta
+	
+	_set_animation(\"walk\")
+
+func _set_animation(name):
+	if (get_child(0).get_animation() == name): return
+	
+	get_child(0).set_animation(name)
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e31xn"]
 atlas = ExtResource("1_ly1ls")
@@ -102,6 +134,9 @@ animations = [{
 }, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_4aq8a")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4aq8a")
 }],
 "loop": false,
 "name": &"attack",
@@ -150,15 +185,14 @@ animations = [{
 }]
 
 [node name="Playercharacter" type="CharacterBody2D"]
+process_mode = 1
 script = SubResource("GDScript_obd0l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cirpt")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 scale = Vector2(0.25, 0.25)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_pj3xh")
 animation = &"attack"
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
